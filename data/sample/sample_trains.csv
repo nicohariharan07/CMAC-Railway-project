@@ -1,0 +1,6 @@
+train_number,train_name,origin,destination,scheduled_departure,distance_km
+12621,Tamil Nadu Express,Chennai Central,New Delhi,22:00,2194
+12639,Brindavan Express,Chennai Central,Bangalore City,07:50,362
+22625,Chennai-Bengaluru SF,Chennai Central,Bangalore City,06:00,362
+12027,Chennai-Bengaluru Shatabdi,Chennai Central,Bangalore City,06:00,362
+12007,Chennai-Bengaluru Shatabdi,Chennai Central,Bangalore City,14:30,362

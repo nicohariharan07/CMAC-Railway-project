@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: cmac-postgres
+    environment:
+      POSTGRES_USER: cmac
+      POSTGRES_PASSWORD: cmac
+      POSTGRES_DB: cmac
+    ports:
+      - "5432:5432"
+    volumes:
+      - cmac_pg_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    container_name: cmac-backend
+    environment:
+      DATABASE_URL: postgresql://cmac:cmac@postgres:5432/cmac
+      FRONTEND_ORIGIN: http://localhost:5173
+      CROWD_ALERT_THRESHOLD: 40
+      MAINTENANCE_ANOMALY_THRESHOLD: -0.15
+      DELAY_ALERT_THRESHOLD_MIN: 15
+      NOTIFY_CHANNEL: console
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: cmac-frontend
+    environment:
+      VITE_API_BASE: http://localhost:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  cmac_pg_data:

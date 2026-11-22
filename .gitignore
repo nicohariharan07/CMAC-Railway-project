@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.joblib
+backend/cmac.db
+.env
+
+# Node
+node_modules/
+dist/
+package-lock.json
+
+# OS
+.DS_Store
